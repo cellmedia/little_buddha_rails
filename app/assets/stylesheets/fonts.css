@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+@font-face {
+    font-family: 'mrbubblefontregular';
+    src: url('mrbubblefont-webfont.eot');
+    src: url('mrbubblefont-webfont.eot?#iefix') format('embedded-opentype'),
+         url('mrbubblefont-webfont.woff') format('woff'),
+         url('mrbubblefont-webfont.ttf') format('truetype'),
+         url('mrbubblefont-webfont.svg#mrbubblefontregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}

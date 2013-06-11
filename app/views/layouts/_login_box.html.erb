@@ -1,0 +1,9 @@
+<!--Partial for ajax-->
+<div id="login_box">
+<% if current_user.try(:admin) %>
+	<p><%= link_to "Sign out Admin", destroy_user_session_path, :method => :delete, :class => 'sign_out' %></p>
+	<% elsif user_signed_in? %>
+	<p><%= link_to "Sign out", destroy_user_session_path, :method => :delete, :class => 'sign_out' %></p>
+	<% else %>
+	<p><a id="login" href="#login_container">LOGIN</a> | <a id="register" href="#register_container">REGISTER</a></p>
+	<% end %>

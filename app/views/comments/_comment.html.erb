@@ -1,0 +1,29 @@
+<div class="comment_wrapper"><!--Start of comment wrapper-->
+	
+	<div class="comment_seperator"></div>
+	
+	<p class="commenter">
+		<!--Display commenter information here-->
+		<%= comment.updated_at.present? ? display_date(comment.updated_at) : comment.updated_at %> 
+
+		Comment By: <%= comment.commenter %>
+	</p>
+	
+	<p class="comment_content">
+		<!--Display comment body here-->
+		<%= comment.body %>
+	</p>
+	
+	<% if current_user.try(:admin) %>
+		<p class="comment_actions">
+			<!--Destroy comment link here-->
+			<%= link_to 'Destroy Comment', [comment.post, comment], :confirm => 'Are you sure?',:method => :delete %>
+		</p>
+	<% elsif user_signed_in? && current_user.id == comment.user_id %>
+		<p class="comment_actions">
+			<!--Destroy comment link here-->
+			<%= link_to 'Destroy Comment', [comment.post, comment], :confirm => 'Are you sure?',:method => :delete %>
+		</p>
+	<% end %>
+	
+</div><!--End of comment wrapper-->

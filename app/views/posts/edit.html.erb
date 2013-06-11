@@ -1,0 +1,16 @@
+<% content_for :title, "Little Buddha - Edit Posts" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+
+	<div id="main_admin">
+		<h1>Edit Post</h1>
+
+			<%= render 'form' %>
+			
+			<div id="post_edit_actions">
+			<%= link_to 'Show', @post %> |
+			<%= link_to 'Back', posts_path %>
+			</div>
+	</div>
+	
+</div><!--End of page wrapper-->

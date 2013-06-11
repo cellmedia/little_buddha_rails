@@ -1,0 +1,18 @@
+<!--Form for nested resource comments-->
+		
+<% if user_signed_in? %>
+	
+	<%= form_for([@post, @comment], :html => {:id => "comment_form"}) do |f| %>
+
+	<%= f.text_area :body%>
+
+	<%= f.submit 'SUBMIT' %>
+	
+	<% end %>
+	
+<% else %>
+	
+	<p>Please <%= link_to "sign in", '#' ,:onclick => 'open_login_box()' %> or <%= link_to "sign up", '#' ,:onclick => 'open_register_box()' %>, to post a comment,</p>
+
+<% end %>
+	

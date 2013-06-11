@@ -1,0 +1,50 @@
+<% content_for :title, "Little Buddha - News" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+	
+    <div id="main_left"><!--Start of news(posts)-->
+		<h1>Little Buddha News</h1>
+		
+		<!--Display posts here-->
+		<% @posts.each do |post| %>
+	    <h3 class="post_title"><%= post.title %></h3>
+	    <p class="post_short"><%= truncate(post.content, :length => 300)  %></p>
+		<p class="post_link"><%= link_to 'Read More...', post %></p>
+		<% end %>
+		
+		<!--Display post pagination here-->
+		<div id="pagination">
+		<%= will_paginate @posts, :previous_label => '<< Previous', :next_label => 'Next >>' %>
+		</div>
+	</div><!--End of news(posts)-->
+
+
+    <div id="main_right_top"><!--Start of arkives(posts)-->
+		<h1>ARCHIVES</h1>
+		
+		<!--Display post arkives here-->
+		<% @category_by_month.keys.sort.each do |monthname, posts| %>
+		<ul id="arkive">
+		     <li><h2><%= link_to monthname, post_by_months_index_path(:month => monthname) %></h2></li>
+		</ul>
+		<% end %>
+    </div><!--End of arkives(posts)-->
+    
+    <div id="main_right_bottom"><!--Start of New Album Release-->
+    	<h1>NEW ALBUM</h1>
+
+		<img class="new_album_cover" src="../images/new_album_cover.png" alt="Image of New Album Cover">
+		<p>The highly anticipated new album from Little Buddha</p>
+		<p><a href="#">OUT NOW!</a></p>
+    </div><!--End of New Album Release-->
+
+</div><!--End of page wrapper-->
+
+<script>
+$(document).ready(function(){
+	
+	//Active naviagation link
+	$("#news").addClass("active");
+
+});
+</script>

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title><%=h yield(:title) %></title>
+	
+	<!--Include global CSS-->
+	<%= stylesheet_link_tag "fonts", :media => "all" %>
+  	<%= stylesheet_link_tag "styles", :media => "all" %>
+  	<%= stylesheet_link_tag "slider", :media => "all" %>
+  	<%= stylesheet_link_tag "jquery.fancybox", :media => "all" %>
+
+	<!--Include Typekit Fonts-->
+	<script type="text/javascript" src="//use.typekit.net/zlt3iav.js"></script>
+	<script type="text/javascript">try{Typekit.load();}catch(e){}</script>
+	
+	<!--Apply CSRF meta tags-->
+  	<%= csrf_meta_tags %>
+
+</head>
+<body>
+	
+	<header id="back_to_top"><!--Start of header-->
+		
+        <div class="wrapper"><!--Start of page wrapper-->
+	
+	    	<img src="/images/header_band.png" class="header_img" alt="Image of logo and Little Buddha band"/>
+        
+	        <nav><!--Start of nav-->
+	            <ul class="menu">
+	                <li id="home"><%= link_to "Home", root_path %></li>
+	                <li class="nav_seperator"><img class="nav_img_seperator" src="/images/small_star.png"/></li>
+	                <li id="bio"><%= link_to "Bio", bio_index_path %></li>
+	                <li class="nav_seperator"><img class="nav_img_seperator" src="/images/small_star.png"/></li>
+	                <li id="news"><%= link_to "News", news_index_path %></li>
+	                <li class="nav_seperator"><img class="nav_img_seperator" src="/images/small_star.png"/></li>
+	                <li id="shows"><%= link_to "Shows", shows_index_path %></li>
+	                <li class="nav_seperator"><img class="nav_img_seperator"src="/images/small_star.png"/></li>
+	                <li id="media"><%= link_to "Media", media_index_path %></li>
+	                <li class="nav_seperator"><img class="nav_img_seperator"src="/images/small_star.png"/></li>
+	                <li id="contact"><a id="contact_lightbox" href="#contact_container">Contact</a></li>
+	            </ul>
+	        </nav><!--End of nav-->
+    		
+			<%= render :partial => 'layouts/admin_blog' %><!--Start of login lightbox-->
+
+				<%= render :partial => 'layouts/login_box' %>
+					<div style="display:none;">
+						<div id="login_container">
+							<div class="lightbox">
+								<h1>LOGIN</h1><p>New to Little Buddha? <%= link_to "Sign up", '#' ,:onclick => 'open_register_box()' %></p>
+								<div class="seperator"></div>
+								<%= render :template => 'devise/sessions/new' %>
+							</div>
+						</div>
+					</div>
+			</div><!--End of login lightbox-->
+			
+			<div id="register_box"><!--Start of registration lightbox-->
+					<div style="display:none;">
+						<div id="register_container">
+							<div class="lightbox">
+								<h1>REGISTER</h1><p>Already have an account? <%= link_to "Sign in", '#', :onclick => 'open_login_box()' %></p>
+								<div class="seperator"></div>
+								<%= render :template => 'devise/registrations/new' %>
+							</div>
+						</div>
+					</div>
+			</div><!--End of registration lightbox-->
+			
+			<div id="contact_box"><!--Start of contact lightbox-->
+					<div style="display:none;">
+						<div id="contact_container">
+							<div class="lightbox">
+								<h1>Contact</h1><p>Got A Question?</p>
+								<div class="seperator"></div>
+								<%= render :template => 'contact/new' %>
+							</div>
+						</div>
+					</div>
+			</div><!--End of contact lightbox-->
+			
+			<div id="app_notify"><!--Start of app notifications-->
+				<p><%= content_tag(:div, flash[:error], :id => "flash_error") if flash[:error] %></p>
+				<p><%= content_tag(:div, flash[:notice], :id => "flash_notice") if flash[:notice] %></p>
+				<p><%= content_tag(:div, flash[:alert], :id => "flash_alert") if flash[:alert] %></p>
+
+				<% flash.each do |name, msg| %>
+					<% content_tag :div, msg, :id => "flash_#{name}" %>
+				<% end %>
+			</div><!--End of app notifications-->
+			
+		</div><!--End of page wrapper-->
+		
+    </header><!--End of header-->
+	
+	<!--Include global JS-->
+    <%= javascript_include_tag "jquery" %>
+    <%= javascript_include_tag "jquery_ujs" %>
+    <%= javascript_include_tag "twitter" %>
+    <%= javascript_include_tag "jquery.fancybox.pack" %>
+ 	
+	<!--Yield views-->
+	<%= yield %>
+	
+	
+	<footer><!--Start of footer-->
+		
+		<div class="wrapper"><!--Start of page wrapper-->
+			
+			<div id="footer_bg"><!--Start of footer background-->
+				
+				<!--Footer Links-->
+				<%= link_to "Home", root_path, :class => 'home_pos' %>
+				<%= link_to "Bio", bio_index_path, :class => 'bio_pos' %>
+				<%= link_to "News", news_index_path, :class => 'news_pos' %>
+				<%= link_to "Shows", shows_index_path, :class => 'shows_pos' %>
+				<%= link_to "Media", media_index_path, :class => 'media_pos' %>
+				<a id="contact_lightbox" href="#contact_container" class="contact_pos">Contact</a>
+				
+				<div id="footer_content"><!--Start of footer content-->
+					<div id="sm_icons">
+						<h5>Connect With Little Buddha</h5>
+						<div id="facebook">
+							<div class="flip">
+								<div class="card">
+									<div class="face front">
+										<a href="https://www.facebook.com/LittleBuddhaBand" target="blank"><img class="social_icon" src="/images/fb_icon.png" alt="Image of Facebook Icon"></a>
+									</div>
+									<div class="face back">
+										<a href="https://www.facebook.com/LittleBuddhaBand" target="blank"><img class="social_icon" src="/images/go_icon.png" alt="Image of Go(Link) Icon"></a>
+									</div>
+								</div>
+							</div>
+							<p class="social_text">Join<span> Little Buddha Band on </span>Facebook</p>
+						</div>
+
+						<div id="twitter">
+							<div class="flip">
+								<div class="card">
+									<div class="face front">
+										<a href="https://twitter.com/LittleBuddhanet" target="blank"><img class="social_icon" src="/images/t_icon.png" alt="Image of Twitter Icon"></a>
+									</div>
+									<div class="face back">
+										<a href="https://twitter.com/LittleBuddhanet" target="blank"><img class="social_icon" src="/images/go_icon.png" alt="Image of Go(Link) Icon"></a>
+									</div>
+								</div>
+							</div>
+							<p class="social_text">Follow<span> @LittleBuddhaNet on </span>Twitter</p>
+						</div>
+
+						<div id="youtube">
+							<div class="flip">
+								<div class="card">
+									<div class="face front">
+										<a href="http://www.youtube.com/user/LittleBuddhaTV?feature=" target="blank"><img class="social_icon" src="/images/yt_icon.png" alt="Image of Youtube Icon"></a>
+									</div>
+									<div class="face back">
+										<a href="http://www.youtube.com/user/LittleBuddhaTV?feature=" target="blank"><img class="social_icon" src="/images/go_icon.png" alt="Image of Go(Link) Icon"></a>
+									</div>
+								</div>
+							</div>
+							<p class="social_text">Subscribe<span> LittleBuddhaTV on </span>Youtube</p>
+						</div>
+
+						<div id="soundcloud">
+							<div class="flip">
+								<div class="card">
+									<div class="face front">
+										<a href="https://soundcloud.com/grant-4-2" target="blank"><img class="social_icon" src="/images/sc_icon.png" alt="Image of SoundCloud Icon"></a>
+									</div>
+									<div class="face back">
+										<a href="https://soundcloud.com/grant-4-2" target="blank"><img class="social_icon" src="/images/go_icon.png" alt="Image of Go(Link) Icon"></a>
+									</div>
+								</div>
+							</div>
+							<p class="social_text">Follow<span> Little-Buddha-FM on </span>SoundCloud</p>
+						</div>
+					</div>
+					<div id="footer_copyright">
+						<h6>Designed and Developed by Dwain Maxwell (Cell Media) - Little Buddha Copyright 2013</h6>
+					</div>
+				</div><!--End of footer content-->
+				
+		   </div><!--End of footer background-->
+		
+		</div><!--End of page wrapper-->
+			
+	</footer><!--End of footer-->
+	
+	<!--Include ajax calls-->
+	<%= javascript_include_tag "ajax" %>
+	
+	<script>
+	
+	//Switch between login & register lightboxes
+	function open_login_box(){
+		$.fancybox.close();
+		$('a#login').fancybox().trigger('click');
+	}
+	
+	//Switch between login & register lightboxes
+	function open_register_box(){
+		$.fancybox.close();
+		$('a#register').fancybox().trigger('click');
+	}
+	
+	$(document).ready(function(){
+		//Slide app notifier down
+		$('#app_notify').fadeIn(1000, function(){
+	        $('#app_notify').animate({"bottom" : "-50px",}, 2000);
+	    });
+	
+		$('#app_notify').animate({"bottom" : "0px",}, 2000);
+		
+		//Apply fancybox awesomeness
+		$("a.inline, a#login, a#register, a#contact_lightbox").fancybox({
+				maxWidth	: 600,
+				maxHeight	: 400,
+				fitToView	: false,
+				width		: '600',
+				height		: '400',
+				autoDimensions: false,
+				autoSize	: false,
+				closeClick	: false,
+				openEffect	: 'elastic',
+				closeEffect	: 'elastic',
+				callBackOnShow: ajaxifyLoginForm(),
+				callBackOnShow: ajaxifyRegisterForm()
+		});
+		
+		//Social media/Back to top icons flip transition	
+		$('.flip').on({	
+			mouseenter: function(){
+		       $(this).find('.card').addClass('flipped')
+		    },
+		    mouseleave: function(){
+		        $(this).find('.card').removeClass('flipped');
+		    }
+		});
+		
+	});
+	</script>
+	
+</body>
+</html>

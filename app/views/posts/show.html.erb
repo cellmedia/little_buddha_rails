@@ -1,0 +1,63 @@
+<% content_for :title, "Little Buddha - Individual Post" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+		
+		<!--Display individual post here-->
+		<div id="post_main_left"> 
+			<h1><%= @post.title %></h1>
+
+			<p class="post_release"><%= display_date(@post.updated_at) %>  Posted By: <%= @post.name %></p>
+	
+			<div id="post_content">
+			<%= simple_format @post.content %>
+			</div>
+			
+			<% if current_user.try(:admin) %>
+				<div id="post_actions">
+				<%= link_to 'Edit Post', edit_post_path(@post) %> |
+				<%= link_to 'Back to Posts', posts_path %>
+				</div>
+			<% elsif %>
+				<div id="post_actions">
+				<%= link_to 'Back to Posts', news_index_path %>
+				</div>
+			<% end %>
+			
+		</div>
+		
+		
+		<div id="main_right_top"><!--Start of arkives(posts)-->
+			<h1>ARCHIVES</h1>
+
+			<!--Display post arkives here-->
+			<% @category_by_month.keys.sort.each do |monthname, posts| %>
+			<ul id="arkive">
+			     <li><h2><%= link_to monthname, post_by_months_index_path(:month => monthname) %></h2></li>
+			</ul>
+			<% end %>
+	    </div><!--End of arkives(posts)-->
+		
+		
+		<div id="main_right_bottom"><!--Start of New Album Release-->
+			<h1>NEW ALBUM</h1>
+			<img class="new_album_cover" src="/images/new_album_cover.png" alt="Image of New Album Cover">
+			<p>The highly anticipated new album from Little Buddha</p>
+			<p><a href="#">OUT NOW!</a></p>
+		</div><!--End of New Album Release-->
+		
+		<div id="comments"><!--Start of comment form-->
+		<h1>Add a comment:</h1>
+		<%= render "comments/form" %>
+		</div><!--End of comment form-->
+	
+		<div id="comment_list"><!--Start of comments-->
+		<h1 class="comment_h1_align">Comments</h1>
+		
+		<% if @post.comments.reject(&:new_record?).empty? %>
+				<p class="no_comment">No comments yet, be the first!</p>
+		<% else %>
+		<%= render @post.comments.reverse %>
+		<% end %>
+		</div><!--End of comments-->
+	
+</div><!--End of page wrapper-->

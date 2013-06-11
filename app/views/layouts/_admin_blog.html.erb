@@ -1,0 +1,6 @@
+<!--Partial for ajax-->
+<% if current_user.try(:admin) %>
+	<div id="admin_box">
+		<p><%= link_to "Admin Blog", posts_path %></p>
+	</div>
+<% end %>

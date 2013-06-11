@@ -1,0 +1,2 @@
+module ImageGalleryGigs2013Helper
+end

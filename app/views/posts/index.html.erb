@@ -1,0 +1,35 @@
+<% content_for :title, "Little Buddha - Admin Blog" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+    
+	<div id="main_admin"><!--Start of all posts(admin)-->
+		<h1 class="admin_main_title">Admin Blog - All Posts</h1>
+		<h3 class="admin_new_post"><%= current_user.email  %> - <%= link_to 'Create New Post', new_post_path %></h3>
+		
+		<!--Display posts here-->
+		<% @posts.each do |post| %>
+		<h3 class="admin_post_title">Name: <%= post.title %></h3>
+		
+		<!--Admin post controls here-->
+		<div class="admin_post_controls">
+			<p><strong>Admin Control</strong></p>
+			<p class="admin_post_control_links"><%= link_to '- Edit', edit_post_path(post) %></p>
+	    	<p class="admin_post_control_links"><%= link_to '- Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+		</div>
+		
+		<!--Display posts here-->
+		<h4 class="admin_post_release">Created At: <%= display_date(post.created_at)%> Owner: <%= post.name %> </h3>
+	    <p class="admin_post_short"><%= truncate(post.content, :length => 300)  %></p>
+		<p class="admin_post_link"><%= link_to 'Read More...', post %></p>
+
+		
+		<% end %>
+		
+		<!--Display post pagination here-->
+		<div id="admin_pagination">
+			<%= will_paginate @posts, :previous_label => '<< Previous', :next_label => 'Next >>' %>
+		</div>
+		
+	</div><!--End of all posts(admin)-->
+
+</div><!--End of page wrapper-->

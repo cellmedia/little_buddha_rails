@@ -1,0 +1,2 @@
+module ImageGalleryRecordingHelper
+end

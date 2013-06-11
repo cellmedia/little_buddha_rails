@@ -1,0 +1,32 @@
+<% content_for :title, "Little Buddha - Media" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+
+	<div id="media_box_left"><!--Start of images link box-->
+		<h1>IMAGES</h1>
+		<%= link_to image_tag("../images/media_image_1.jpg", :class => "media_image", :alt => "Image of Little Buddha Band Live"), images_index_path %>
+		<p class="media_link_align"><%= link_to "CLICK HERE", images_index_path %></p>
+	</div><!--End of images link box-->
+	
+	<div id="media_box_mid"><!--Start of videos link box-->
+		<h1>VIDEOS</h1>
+		<%= link_to image_tag("../images/media_image_2.jpg", :class => "media_image", :alt => "Image of Little Buddha Bassist Playing"), videos_index_path %>
+		<p class="media_link_align"><%= link_to "CLICK HERE", videos_index_path %></p>
+	</div><!--End of videos link box-->
+	
+	<div id="media_box_right"><!--Start of new album link box-->
+		<h1>NEW ALBUM</h1>
+		<img class="media_image" src="../images/media_image_3.jpg" alt="Image of New Album Cover">
+		<p class="media_link_align"><a href="#">CLICK HERE</a></p>
+	</div><!--End of album link box-->
+	
+</div><!--End of page wrapper-->
+
+<script>
+$(document).ready(function(){
+	
+	//Active naviagation link
+	$("#media").addClass("active");
+
+});
+</script>

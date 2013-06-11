@@ -1,0 +1,2 @@
+module ImageGalleryCampHelper
+end

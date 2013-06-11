@@ -1,0 +1,54 @@
+<% content_for :title, "Little Buddha - Image Gallery" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+	
+	<div id="media_list"><!--Start of Image Gallery List-->
+		<h1>Image Gallery</h1>
+		<ul>
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_1.jpg", :class => "thumb_border", :alt => "Image of Little Buddha Band"), image_gallery_official_index_path %></p>
+			
+				<p class="media_title">Official <span>Photoshoot</span></p>
+			</li>
+			
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_2.jpg", :class => "thumb_border", :alt => "Image of Little Buddha Recording #2 Album"), image_gallery_recording_index_path %></p>
+			
+				<p class="media_title">Recording <span>#2 Album</span></p>
+			</li>
+			
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_3.jpg", :class => "thumb_border", :alt => "Image of Little Buddha Band"), image_gallery_gigs_2013_index_path %></p>
+			
+				<p class="media_title">Gigs <span>2013</span></p>
+			</li>
+			
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_4.jpg", :class => "thumb_border", :alt => "Image of Little Buddha Drummer"), image_gallery_gigs_2012_index_path %></p>
+			
+				<p class="media_title">Gigs <span>2012</span></p>
+			</li>
+			
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_5.jpg", :class => "thumb_border", :alt => "Image of Little Buddha on Stage"), image_gallery_gigs_2011_index_path %></p>
+			
+				<p class="media_title">Gigs <span>2011</span></p>
+			</li>
+			
+			<li>
+				<p><%= link_to image_tag("../images/image_gallery_6.jpg", :class => "thumb_border", :alt => "Image of Little Buddha Vocalist"), image_gallery_camp_index_path %></p>
+			
+				<p class="media_title">LB <span>Camp</span></p>
+			</li>
+		</ul>
+	</div><!--End of Image Gallery List-->
+	
+</div><!--End of page wrapper-->
+<script>
+$(document).ready(function(){
+	
+	//Active naviagation link
+	$("#media").addClass("active");
+
+});
+</script>

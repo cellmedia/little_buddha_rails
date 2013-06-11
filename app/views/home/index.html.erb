@@ -1,0 +1,138 @@
+<% content_for :title, "Little Buddha - Homepage" %>
+
+<div class="wrapper"><!--Start of page wrapper-->
+	
+	<div class="container"><!--Start of jQuery Slideshow-->
+		<noscript><p>Please enable <span>JAVASCRIPT</span> in your browser settings to <span>LOGIN</span> and <span>REGISTER</span> plus see our website in its <span>FULL</span> beauty!</p></noscript>
+    	<div id="slides">
+	
+     		<div class="slide"><!--Start of Slide 1-->
+	   			<div class="slide_border">
+	     			<div class="slide_text">
+		   	  			<h3 class="slide_h3">The</h3>
+		   	  			<h5 class="slide_h4">Baader-Meinhof Phenomenon</h5>
+		   	  			<h4 class="slide_h5">album artwork<h4> 
+		   	  			<p>Fellow band says - <span>“Little Buddha’s second album artwork is beautifully done yet very different”</span></p>
+		   	  			<a href="#">Check It Out!</a>
+	     			</div>
+	     			<img class="slide_1_img" src="images/slide_image_1.png" alt="Image of New Album Artwork">
+	   			</div> 
+	 		</div><!--End of Slide 1-->
+
+	 		<div class="slide"><!--Start of Slide 2-->
+	   			<div class="slide_border">
+	     			<div class="slide_text">
+		   	  			<h3 class="slide_h3">Follow</h3>
+		   	  			<h5 class="slide_h4">The Little Buddha Band</h5>
+		   	  			<h4 class="slide_h5">on these sites too...<h4> 
+		   	  			<p>Facebook, Twitter, Youtube and SoundCloud are just some of the websites we are involved with.</p>
+		   	  			<a href="#footer_bg">Links Below!</a>
+	     			</div>
+	     			<img class="slide_2_img" src="images/slide_image_2.png" alt="Image of Social Media Icons">
+	   			</div> 
+	 		</div><!--End of Slide 2-->
+
+			<div class="slide"><!--Start of Slide 3-->
+	   			<div class="slide_border">
+	     			<div class="slide_text">
+		   	  			<h3 class="slide_h3">Listen & Watch</h3>
+		   	  			<h5 class="slide_h4">The "Beautiful" Music Video</h5>
+		   	  			<h4 class="slide_h5">by Kat & Grant<h4> 
+		   	  			<p>YouTube Member - <span>"I THINK THE WHOLE WORLD NEEDS TO HEAR THIS SONG..."</span></p>
+		   	  			<%= link_to "Watch Now!", videos_index_path %>
+	     			</div>
+	     			<img class="slide_3_img" src="images/slide_image_3.png" alt="Image of New Album Artwork">
+	   			</div> 
+	 		</div><!--End of Slide 3-->
+
+			<div class="slide"><!--Start of Slide 4-->
+	   			<div class="slide_border">
+	     			<div class="slide_text">
+		   	  			<h3 class="slide_h3">Read</h3>
+		   	  			<h5 class="slide_h4">Between The Sheets!</h5>
+		   	  			<h4 class="slide_h5">its Q & A time....<h4> 
+		   	  			<p>Grant - <span>Getting knocked out by Kat swinging a golf club during Scootie Gowf Season 2012!</span></p>
+		   	  			<a href="#">More Here!</a>
+	     			</div>
+	     			<img class="slide_4_img" src="images/slide_image_4.png" alt="Image of New Album Artwork">
+	   			</div> 
+	 		</div><!--End of Slide 4-->
+	
+		</div>
+  	</div><!--End of jQuery Slideshow-->
+
+    <div id="main_left"><!--Start of Latest News-->
+		<h1>Latest News</h1>
+		
+		<!--Display posts here-->
+		<% @posts.each do |post| %>
+	    <h3 class="post_title"><%= post.title %></h3>
+	    <p class="post_short"><%= truncate(post.content, :length => 300)  %></p>
+		<p class="post_link"><%= link_to 'Read More...', post %></p>
+		<% end %>
+		
+	</div><!--End of Latest News-->
+
+    <div id="main_right_top"><!--Start of Twitter Feed-->
+		<h1>TWITTER FEED</h1>
+
+		<div id="jstwitter">
+			<p>Follow <a href="#">@LittleBuddhaNet</a></p></br>
+		</div>
+		<img class="twitter_area" src="images/twitter_area.png" alt="Image of twitter bird and speech bubble for twitter feed">
+    </div><!--End of Twitter Feed-->
+       
+    <div id="main_right_bottom"><!--Start of New Album Release-->
+    	<h1>NEW ALBUM</h1>
+		<img class="new_album_cover" src="images/new_album_cover.png" alt="Image of New Album Cover">
+		<p>The highly anticipated new album from Little Buddha</p>
+		<p><a href="#">OUT NOW!</a></p>
+    </div><!--End of New Album Release-->
+
+</div><!--End of page wrapper-->
+
+<!--Include jQuery 'slidesjs' Plugin-->
+<%= javascript_include_tag "jquery.slides.min" %>
+
+<script>
+$(document).ready(function(){
+	
+	//Active naviagation link
+	$("#home").addClass("active");
+	
+	//Setup slidesjs awesomeness
+   	$(function() {
+	     $('#slides').slidesjs({
+	       width: 960,
+	       height: 300,
+		   pagination: {
+		      active: true,
+		        // [boolean] Create pagination items.
+		        // You cannot use your own pagination. Sorry.
+		      effect: "slide"
+		        // [string] Can be either "slide" or "fade".
+		    },
+	       play: {
+	         active: true,
+	         auto: true,
+	         interval: 4000,
+	         swap: true
+	       }
+	     });
+	});
+	
+	//Apply 'scrollTo' jQuery Effect to # links 
+	$('a[href^="#"]').on('click',function (e) {
+	    e.preventDefault();
+	    var target = this.hash,
+	    $target = $(target);
+	    $('html, body').stop().animate({
+	        'scrollTop': $target.offset().top
+	    }, 900, 'swing', function () {
+	        window.location.hash = target;
+	    });
+	});
+	
+});
+</script>
+
