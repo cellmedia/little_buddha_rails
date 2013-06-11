@@ -11,4 +11,6 @@ class User < ActiveRecord::Base
   #active record relationships
   has_many :comments
   
+  #adding a comment for github purposes
+  
 end
